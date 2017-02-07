@@ -935,7 +935,7 @@ public interface Future<T> extends Value<T> {
     default T get() {
         // is empty will block until result is available
         if (isEmpty()) {
-            throw new NoSuchElementException("get on failed future");
+            throw new NoSuchElementException("get on failed future", getValue().get().getCause());
         } else {
             return getValue().get().get();
         }
